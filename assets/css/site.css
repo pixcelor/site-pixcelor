@@ -189,6 +189,8 @@ h3 { font-family: var(--f-display); letter-spacing: -0.02em; }
 .viz .fl-name { font-size: 14.5px; font-weight: 600; fill: var(--encre); }
 .viz .fl-fmt { font: 500 11.5px var(--f-mono); fill: var(--text-3); }
 .viz .fl-sub { font-size: 13px; fill: var(--text-2); }
+.viz .fl-m { font-size: 13px; }
+.viz .fl-m2 { font-size: 10.5px; }
 .viz .fl-line { stroke: rgba(28, 24, 21, 0.22); }
 .viz .fl-link.is-on .fl-line { stroke: var(--terra); }
 .flow-viz.has-focus .fl-src:not(.is-on), .flow-viz.has-focus .fl-out:not(.is-on) { opacity: 0.4; }
@@ -647,8 +649,16 @@ h3 { font-family: var(--f-display); letter-spacing: -0.02em; }
   .who { gap: 8px; }
   .who-bar { height: 140px; }
   .who-col span { font-size: 11.5px; }
-  .testi-list li { flex-direction: column; }
-  .facade--s { width: 100%; }
+  /* Téléphone : une échelle de titres plus calme, des marges plus courtes, et moins de doublons. */
+  :root { --section: 60px; --fs-h2: 30px; --fs-h3: 20px; --fs-lead: 16.5px; }
+  .quote-big { font-size: 20px; }
+  .band h2, .community h2 { font-size: 26px; }
+  .layers-visual { display: none; }
+  .portrait { max-width: 240px; }
+  .testi-list li { gap: 14px; }
+  .facade--s { width: 104px; }
+  .todo li:nth-child(n+4) { display: none; }
+  .flow-fig, .delay-fig, .gantt-fig { padding: 14px; }
   .tabs [role="tab"] { padding: 11px 16px; font-size: 14.5px; }
   .book-frame { min-height: 760px; }
   .footer-cols { grid-template-columns: minmax(0, 1fr); }

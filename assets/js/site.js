@@ -1059,21 +1059,21 @@
       enr: {
         dims: ["Centrales", "Calendrier", "Budgets", "Contrats"],
         src: [
-          { n: "Portails des onduleurs", f: "API", i: "api", to: [0, 2], r: "la production et les alarmes de chaque onduleur, récupérées chaque jour." },
+          { n: "Portails des onduleurs", m: "Onduleurs", f: "API", i: "api", to: [0, 2], r: "la production et les alarmes de chaque onduleur, récupérées chaque jour." },
           { n: "Supervision", f: "export", i: "gauge", to: [0, 2], r: "les arrêts et leurs causes, rapprochés de l'énergie perdue." },
           { n: "Compteurs", f: "fichiers", i: "meter", to: [0, 1], r: "l'énergie réellement injectée, celle qui sert à la facturation." },
           { n: "Comptabilité", f: "FEC", i: "ledger", to: [1], r: "les charges et les encaissements de chaque société de projet." },
-          { n: "Contrats et business plan", f: "Excel", i: "sheet", to: [0, 1, 2], r: "les budgets P50 et les prix de vente, pour chiffrer chaque écart en euros." }
+          { n: "Contrats et business plan", m: "Contrats et BP", f: "Excel", i: "sheet", to: [0, 1, 2], r: "les budgets P50 et les prix de vente, pour chiffrer chaque écart en euros." }
         ],
         out: [["Tableau de bord", "production et pertes par centrale"], ["Rapport mensuel", "par société de projet"], ["Alertes", "centrales à traiter en priorité"]]
       },
       btp: {
         dims: ["Chantiers", "Calendrier", "Budgets", "Fournisseurs"],
         src: [
-          { n: "Logiciel de devis", f: "export", i: "doc", to: [0, 1], r: "le budget prévu de chaque chantier, poste par poste." },
-          { n: "Suivi de chantier", f: "Excel des équipes", i: "sheet", to: [0, 1], r: "l'avancement déclaré par les conducteurs de travaux." },
-          { n: "Heures et pointages", f: "export", i: "clock", to: [0, 2], r: "les heures passées, valorisées au coût réel." },
-          { n: "Factures fournisseurs", f: "PDF", i: "pdf", to: [0, 2], r: "les achats engagés, lus par l'IA appliquée puis contrôlés." },
+          { n: "Logiciel de devis", m: "Devis", f: "export", i: "doc", to: [0, 1], r: "le budget prévu de chaque chantier, poste par poste." },
+          { n: "Suivi de chantier", m: "Suivi chantier", f: "Excel des équipes", i: "sheet", to: [0, 1], r: "l'avancement déclaré par les conducteurs de travaux." },
+          { n: "Heures et pointages", m: "Pointages", f: "export", i: "clock", to: [0, 2], r: "les heures passées, valorisées au coût réel." },
+          { n: "Factures fournisseurs", m: "Fournisseurs", f: "PDF", i: "pdf", to: [0, 2], r: "les achats engagés, lus par l'IA appliquée puis contrôlés." },
           { n: "Comptabilité", f: "FEC", i: "ledger", to: [1], r: "le réalisé comptable, rapproché de chaque chantier." }
         ],
         out: [["Tableau de bord", "budget et marge par chantier"], ["Rapport mensuel", "avancement et facturation"], ["Alertes", "chantiers qui dérivent"]]
@@ -1082,9 +1082,9 @@
         dims: ["Sites", "Calendrier", "Contrats", "Techniciens"],
         src: [
           { n: "Interventions", f: "GMAO, export", i: "wrench", to: [0, 1], r: "chaque intervention, avec ses dates et son technicien." },
-          { n: "Demandes clients", f: "mails", i: "mail", to: [0, 2], r: "l'heure de chaque demande, point de départ du délai d'intervention." },
-          { n: "Contrats de maintenance", f: "PDF", i: "pdf", to: [0, 2], r: "les délais promis à chaque client, lus par l'IA appliquée." },
-          { n: "Planning des techniciens", f: "Excel", i: "sheet", to: [1], r: "le préventif prévu, comparé au réalisé." },
+          { n: "Demandes clients", m: "Demandes", f: "mails", i: "mail", to: [0, 2], r: "l'heure de chaque demande, point de départ du délai d'intervention." },
+          { n: "Contrats de maintenance", m: "Contrats", f: "PDF", i: "pdf", to: [0, 2], r: "les délais promis à chaque client, lus par l'IA appliquée." },
+          { n: "Planning des techniciens", m: "Planning", f: "Excel", i: "sheet", to: [1], r: "le préventif prévu, comparé au réalisé." },
           { n: "Comptabilité", f: "FEC", i: "ledger", to: [1], r: "les coûts, pour obtenir le coût de maintenance de chaque site." }
         ],
         out: [["Tableau de bord", "délais et engagements par client"], ["Rapport mensuel", "préventif réalisé, coût par site"], ["Alertes", "engagements en retard"]]
@@ -1092,11 +1092,11 @@
       ind: {
         dims: ["Lignes", "Calendrier", "Lots", "Clients"],
         src: [
-          { n: "Production des lignes", f: "export", i: "gauge", to: [0, 1], r: "les quantités produites et les arrêts de chaque ligne." },
-          { n: "Contrôles qualité", f: "Excel", i: "sheet", to: [0, 2], r: "les mesures de chaque lot, comparées à leurs limites." },
+          { n: "Production des lignes", m: "Production", f: "export", i: "gauge", to: [0, 1], r: "les quantités produites et les arrêts de chaque ligne." },
+          { n: "Contrôles qualité", m: "Qualité", f: "Excel", i: "sheet", to: [0, 2], r: "les mesures de chaque lot, comparées à leurs limites." },
           { n: "Maintenance", f: "GMAO, export", i: "wrench", to: [0], r: "les interventions, pour expliquer les arrêts." },
           { n: "ERP", f: "commandes et stocks", i: "db", to: [1], r: "les commandes et les lots livrés, pour relier chaque défaut à un client." },
-          { n: "Réclamations clients", f: "mails", i: "mail", to: [1, 2], r: "les retours clients, rattachés au lot concerné." }
+          { n: "Réclamations clients", m: "Réclamations", f: "mails", i: "mail", to: [1, 2], r: "les retours clients, rattachés au lot concerné." }
         ],
         out: [["Tableau de bord", "rendement et arrêts par ligne"], ["Rapport mensuel", "qualité, lot par lot"], ["Alertes", "lots hors limite"]]
       }
@@ -1172,23 +1172,25 @@
         links.push({ out: j, d: "M" + x0 + " " + y0.toFixed(1) + " C" + (x0 + dx).toFixed(1) + " " + y0.toFixed(1) + " " + (x1 - dx).toFixed(1) + " " + y1.toFixed(1) + " " + x1 + " " + y1.toFixed(1) });
       });
     } else {
-      // Téléphone : les logiciels en colonne, un tronc à droite qui descend vers le modèle puis vers les sorties.
-      var tx = W - 12, cw = W - 40, y = 0;
-      srcs.forEach(function () { S.push({ x: 0, y: y, w: cw, h: 50 }); y += 60; });
-      y += 20;
-      hub = { x: 0, y: y, w: W, h: 180 };
-      y += 180;
-      chip = { x: 0, y: y + 14, center: false };
-      y += 64;
-      outs.forEach(function () { O.push({ x: 0, y: y, w: cw, h: 62 }); y += 72; });
-      H = y;
+      // Téléphone et tablette : les logiciels sur deux colonnes, reliés par une colonne centrale au modèle de données,
+      // puis les trois rapports côte à côte. Environ 470 px de haut sur un téléphone.
+      var gap = 22, cw = (W - gap) / 2, chh = 46, rowGap = 10, sx = W / 2;
+      srcs.forEach(function (s, i) { var col = i % 2, row = Math.floor(i / 2); S.push({ x: col ? W - cw : 0, y: row * (chh + rowGap), w: cw, h: chh, col: col }); });
+      var yb = Math.ceil(ns / 2) * (chh + rowGap) - rowGap;
+      hub = { x: 0, y: yb + 26, w: W, h: 160 };
+      var oy = hub.y + hub.h + 32, ow = (W - 16) / 3, ohh = 80;
+      outs.forEach(function (o, j) { O.push({ x: j * (ow + 8), y: oy, w: ow, h: ohh }); });
+      chip = { x: W / 2, y: oy + ohh + 14, center: true };
+      H = chip.y + 30;
       srcs.forEach(function (s, i) {
-        var a = S[i], yc = a.y + a.h / 2;
-        links.push({ src: i, d: "M" + (a.x + a.w) + " " + yc + " H" + (tx - 8) + " Q" + tx + " " + yc + " " + tx + " " + (yc + 8) + " V" + hub.y });
+        var a = S[i], yc = a.y + a.h / 2, xe = a.col ? a.x : a.x + a.w, dir = a.col ? -1 : 1;
+        links.push({ src: i, d: "M" + xe + " " + yc + " H" + (sx - dir * 6) + " Q" + sx + " " + yc + " " + sx + " " + (yc + 6) + " V" + hub.y });
       });
+      var busY = hub.y + hub.h + 16;
       outs.forEach(function (o, j) {
-        var b = O[j], yc = b.y + b.h / 2;
-        links.push({ out: j, d: "M" + tx + " " + (hub.y + hub.h) + " V" + (yc - 8) + " Q" + tx + " " + yc + " " + (tx - 8) + " " + yc + " H" + (b.x + b.w) });
+        var bo = O[j], cxo = bo.x + bo.w / 2, dir = cxo > sx ? 1 : -1;
+        links.push({ out: j, d: Math.abs(cxo - sx) < 1 ? "M" + sx + " " + (hub.y + hub.h) + " V" + bo.y
+          : "M" + sx + " " + (hub.y + hub.h) + " V" + (busY - 6) + " Q" + sx + " " + busY + " " + (sx + dir * 6) + " " + busY + " H" + (cxo - dir * 6) + " Q" + cxo + " " + busY + " " + cxo + " " + (busY + 6) + " V" + bo.y });
       });
     }
     var b = base(el, H, "Schéma : les logiciels du métier alimentent un modèle de données, qui alimente les rapports"), s = b.s;
@@ -1212,7 +1214,7 @@
     delay(gh, 450);
     mk("rect", { x: hub.x, y: hub.y, width: hub.w, height: hub.h, rx: 20, class: "fl-hub-bg" }, gh);
     txt(hub.x + 22, hub.y + 34, "Modèle de données", { class: "fl-hub-t" }, gh);
-    var cx = hub.x + hub.w / 2, cy = hub.y + hub.h / 2 + (wide ? 0 : 8), ox = wide ? 88 : Math.min(118, hub.w * 0.3), oy = wide ? 64 : 36, dw = 84, dh = 24;
+    var cx = hub.x + hub.w / 2, cy = wide ? hub.y + hub.h / 2 : hub.y + 84, ox = wide ? 88 : Math.min(118, hub.w * 0.3), oy = wide ? 64 : 28, dw = 84, dh = 24;
     [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(function (q, k) {
       var x = cx + q[0] * ox, yy = cy + q[1] * oy;
       mk("line", { x1: cx, y1: cy, x2: x, y2: yy, class: "fl-rel" }, gh);
@@ -1220,7 +1222,7 @@
       txt(x, yy + 4, F.dims[k], { class: "fl-dim-t", "text-anchor": "middle" }, gh);
     });
     mk("rect", { x: cx - 30, y: cy - 16, width: 60, height: 32, rx: 6, class: "fl-fact" }, gh);
-    txt(hub.x + 22, hub.y + hub.h - 20, "collecte · contrôles · calculs", { class: "fl-hub-s" }, gh);
+    txt(hub.x + 22, hub.y + hub.h - (wide ? 20 : 14), "collecte · contrôles · calculs", { class: "fl-hub-s" }, gh);
 
     // L'IA appliquée, pour ce qui arrive en PDF ou en mail.
     var gc = mk("g", { class: "pop" }, s), label = "IA appliquée : PDF et mails", cwid = Math.round(label.length * 7.1 + 30);
@@ -1235,11 +1237,17 @@
       delay(wrap, 80 + i * 70);
       var g = mk("g", { class: "fl-src", tabindex: 0, role: "button", "aria-label": sr.n + " (" + sr.f + ") : " + sr.r }, wrap);
       mk("rect", { x: a.x + 0.75, y: a.y + 0.75, width: a.w - 1.5, height: a.h - 1.5, rx: 12, class: "fl-card" }, g);
-      var iy = a.y + (a.h - 32) / 2;
-      mk("rect", { x: a.x + 12, y: iy, width: 32, height: 32, rx: 8, class: "fl-ic-bg" }, g);
-      mk("path", { d: FLOW_ICONS[sr.i] || FLOW_ICONS.doc, transform: "translate(" + (a.x + 12) + " " + iy + ")", fill: "none", stroke: t.ink, "stroke-width": 1.6, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
-      txt(a.x + 56, a.y + a.h / 2 - 3, sr.n, { class: "fl-name" }, g);
-      txt(a.x + 56, a.y + a.h / 2 + 14, sr.f, { class: "fl-fmt" }, g);
+      var ic = wide ? 32 : 28, ix = a.x + (wide ? 12 : 9), iy = a.y + (a.h - ic) / 2, tx0 = ix + ic + (wide ? 12 : 9);
+      mk("rect", { x: ix, y: iy, width: ic, height: ic, rx: 8, class: "fl-ic-bg" }, g);
+      mk("path", { d: FLOW_ICONS[sr.i] || FLOW_ICONS.doc, transform: "translate(" + ix + " " + iy + ") scale(" + ic / 32 + ")", fill: "none", stroke: t.ink, "stroke-width": 1.6, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+      if (wide) {
+        txt(tx0, a.y + a.h / 2 - 3, sr.n, { class: "fl-name" }, g);
+        txt(tx0, a.y + a.h / 2 + 14, sr.f, { class: "fl-fmt" }, g);
+      } else {
+        var room = (a.x + a.w - 8 - tx0) * CHAR_W / 7.7; // les 13 px de ces noms sont un peu plus larges que les libellés d'axe
+        txt(tx0, a.y + a.h / 2 - 2, fitLabel(sr.n, sr.m, room), { class: "fl-name fl-m" }, g);
+        txt(tx0, a.y + a.h / 2 + 12, fitLabel(sr.f, null, room * 1.2), { class: "fl-fmt fl-m2" }, g);
+      }
       return g;
     });
 
@@ -1249,9 +1257,21 @@
       delay(wrap, 900 + j * 90);
       var g = mk("g", { class: "fl-out" }, wrap), ty = bx.y + 26;
       mk("rect", { x: bx.x + 0.75, y: bx.y + 0.75, width: bx.w - 1.5, height: bx.h - 1.5, rx: 12, class: "fl-card" }, g);
-      if (wide) { flowMini(g, j, bx.x + 18, bx.y + 16, bx.w - 36, 36, t); ty = bx.y + 78; }
-      txt(bx.x + 18, ty, o[0], { class: "fl-name" }, g);
-      txt(bx.x + 18, ty + 19, o[1], { class: "fl-sub" }, g);
+      if (wide) {
+        flowMini(g, j, bx.x + 18, bx.y + 16, bx.w - 36, 36, t);
+        txt(bx.x + 18, bx.y + 78, o[0], { class: "fl-name" }, g);
+        txt(bx.x + 18, bx.y + 97, o[1], { class: "fl-sub" }, g);
+      } else {
+        flowMini(g, j, bx.x + 10, bx.y + 12, bx.w - 20, 24, t);
+        if (bx.w >= 170) {
+          txt(bx.x + 10, bx.y + 56, o[0], { class: "fl-name fl-m" }, g);
+          txt(bx.x + 10, bx.y + 71, fitLabel(o[1], null, bx.w - 20), { class: "fl-sub fl-m2" }, g);
+        } else {
+          var p2 = splitTwo(o[0]);
+          txt(bx.x + 10, bx.y + (p2[1] ? 54 : 62), p2[0], { class: "fl-name fl-m" }, g);
+          if (p2[1]) txt(bx.x + 10, bx.y + 69, p2[1], { class: "fl-name fl-m" }, g);
+        }
+      }
       return g;
     });
 
