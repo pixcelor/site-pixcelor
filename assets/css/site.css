@@ -266,6 +266,13 @@ h3 { font-family: var(--f-display); letter-spacing: -0.02em; }
 
 /* ---------- Bandeau d'appel ---------- */
 .cta-band { padding-bottom: calc(var(--section) * 0.4); }
+/* Relance discrète en fin de section : une phrase liée à ce qu'on vient de lire, un bouton vers l'agenda. */
+.cta-inline { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; margin-top: clamp(32px, 4vw, 52px); padding: clamp(20px, 2.4vw, 28px) clamp(20px, 2.6vw, 32px); border-radius: 18px; background: var(--lin-soft); box-shadow: inset 0 0 0 1px var(--line); }
+.cta-inline p { margin: 0; flex: 1 1 360px; max-width: 52ch; font: 500 clamp(17px, 1.4vw, 20px)/1.4 var(--f-display); letter-spacing: -0.01em; color: var(--encre); }
+.cta-inline .btn { flex: none; }
+.dark .cta-inline { background: var(--encre-2); box-shadow: inset 0 0 0 1px var(--line-dark); }
+.dark .cta-inline p { color: var(--on-dark); }
+.follow .btn:first-child { margin-right: 4px; }
 .band {
   display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px 48px;
   padding: clamp(28px, 4vw, 56px) clamp(24px, 4vw, 64px); border-radius: var(--r-l);
@@ -662,6 +669,7 @@ h3 { font-family: var(--f-display); letter-spacing: -0.02em; }
   .facade--s { width: 104px; }
   .todo li:nth-child(n+4) { display: none; }
   .flow-fig, .delay-fig, .gantt-fig { padding: 14px; }
+  .cta-inline .btn { width: 100%; justify-content: center; }
   .tabs [role="tab"] { padding: 11px 16px; font-size: 14.5px; }
   .book-frame { min-height: 760px; }
   .footer-cols { grid-template-columns: minmax(0, 1fr); }
