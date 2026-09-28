@@ -1655,43 +1655,63 @@
     var calBtn = $("[data-calendly]");
     $$("[data-calendly]").forEach(function (bt) { bt.addEventListener("click", function () { loadCalendly(bt); }); });
 
-    // Calendrier du mois : les jours ouvrés à venir sont cliquables. S'il en reste moins de cinq, on montre le mois suivant.
+    // Calendrier calé sur la fenêtre de réservation ouverte dans Calendly (deux semaines glissantes) :
+    // seuls les jours ouvrés de demain à J+14 sont cliquables, les autres sont grisés.
+    var CAL_JOURS = 14;
     var cal = $("[data-cal]");
     if (cal && calBtn) (function () {
-      var today = new Date(), y = today.getFullYear(), m = today.getMonth(), pad = function (n) { return (n < 10 ? "0" : "") + n; };
+      var pad = function (n) { return (n < 10 ? "0" : "") + n; };
       var MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+      var MOIS_C = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
       var JOURS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
-      var future = 0, last = new Date(y, m + 1, 0).getDate();
-      for (var dd = today.getDate() + 1; dd <= last; dd++) { var wd = new Date(y, m, dd).getDay(); if (wd && wd < 6) future++; }
-      if (future < 5) { m += 1; if (m > 11) { m = 0; y += 1; } }
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+      var fin = new Date(today);
+      fin.setDate(fin.getDate() + CAL_JOURS);
+      // Première ligne : le lundi de la semaine en cours, ou celui de la semaine suivante le week-end.
+      var lundi = new Date(today);
+      lundi.setDate(lundi.getDate() - (today.getDay() + 6) % 7 + (today.getDay() === 6 || today.getDay() === 0 ? 7 : 0));
+      var ouverts = [];
       var head = document.createElement("div");
       head.className = "cal-head";
       var hb = document.createElement("b");
-      hb.textContent = MOIS[m] + " " + y;
+      hb.textContent = "Les deux prochaines semaines";
       var hs = document.createElement("span");
-      hs.textContent = "Visio de 30 minutes";
       head.appendChild(hb); head.appendChild(hs);
       var grid = document.createElement("div");
-      grid.className = "cal-grid";
-      ["L", "M", "M", "J", "V", "S", "D"].forEach(function (j) { var e = document.createElement("span"); e.className = "dow"; e.setAttribute("aria-hidden", "true"); e.textContent = j; grid.appendChild(e); });
-      var first = (new Date(y, m, 1).getDay() + 6) % 7, nDays = new Date(y, m + 1, 0).getDate();
-      for (var k = 0; k < first; k++) grid.appendChild(document.createElement("span"));
-      for (var d = 1; d <= nDays; d++) {
-        var date = new Date(y, m, d), wday = date.getDay(), iso = y + "-" + pad(m + 1) + "-" + pad(d);
-        var isToday = date.toDateString() === today.toDateString(), open = wday > 0 && wday < 6 && date > today && !isToday;
-        var cell = document.createElement(open ? "button" : "span");
-        cell.className = "d" + (open ? "" : " is-off") + (isToday ? " is-today" : "");
-        cell.textContent = String(d);
-        if (open) {
-          cell.type = "button";
-          cell.setAttribute("aria-label", "Voir les créneaux du " + JOURS[wday] + " " + d + " " + MOIS[m]);
-          (function (dateIso) { cell.addEventListener("click", function () { loadCalendly(calBtn, dateIso); }); })(iso);
+      grid.className = "cal-grid cal-grid--5";
+      ["L", "M", "M", "J", "V"].forEach(function (j) { var e = document.createElement("span"); e.className = "dow"; e.setAttribute("aria-hidden", "true"); e.textContent = j; grid.appendChild(e); });
+      for (var wk = new Date(lundi); wk <= fin; wk.setDate(wk.getDate() + 7)) {
+        for (var i = 0; i < 5; i++) {
+          var date = new Date(wk);
+          date.setDate(date.getDate() + i);
+          var d = date.getDate(), mo = date.getMonth(), iso = date.getFullYear() + "-" + pad(mo + 1) + "-" + pad(d);
+          var isToday = date.getTime() === today.getTime(), open = date > today && date <= fin;
+          var cell = document.createElement(open ? "button" : "span");
+          cell.className = "d" + (open ? "" : " is-off") + (isToday ? " is-today" : "");
+          // Le numéro seul, et le mois quand il change (1er du mois, ou première case de la grille).
+          cell.textContent = String(d);
+          if (d === 1 || (wk.getTime() === lundi.getTime() && i === 0)) {
+            var sm = document.createElement("small");
+            sm.textContent = MOIS_C[mo];
+            cell.appendChild(sm);
+          }
+          if (open) {
+            ouverts.push(date);
+            cell.type = "button";
+            cell.setAttribute("aria-label", "Voir les créneaux du " + JOURS[date.getDay()] + " " + d + " " + MOIS[mo]);
+            (function (dateIso) { cell.addEventListener("click", function () { loadCalendly(calBtn, dateIso); }); })(iso);
+          }
+          grid.appendChild(cell);
         }
-        grid.appendChild(cell);
+      }
+      if (ouverts.length) {
+        var p1 = ouverts[0], p2 = ouverts[ouverts.length - 1];
+        hs.textContent = "du " + p1.getDate() + " " + MOIS_C[p1.getMonth()] + " au " + p2.getDate() + " " + MOIS_C[p2.getMonth()];
       }
       var foot = document.createElement("p");
       foot.className = "cal-foot";
-      foot.textContent = "Les créneaux libres s'affichent après votre choix.";
+      foot.textContent = "Visio de 30 minutes. Les créneaux libres de la journée s'affichent après votre choix.";
       cal.appendChild(head); cal.appendChild(grid); cal.appendChild(foot);
     })();
   }
