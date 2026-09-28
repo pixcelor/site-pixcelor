@@ -31,7 +31,31 @@ a.tile-b:hover .t-go { background: var(--encre); color: var(--lin); transform: r
 .tile-b .chart { margin-top: 12px; }
 .tile-b .legend { margin-top: 10px; font-size: 13px; }
 
-/* Accueil */
+/* Accueil : une seule chose à lire d'abord (le titre), la photo ensuite, les preuves en dessous. */
+.hero2 { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: stretch; }
+.hero2-text { align-self: center; padding-block: clamp(8px, 2vw, 32px); }
+.hero2-title { margin: 0; font: 600 clamp(44px, 5.3vw, 82px)/0.95 var(--f-display); letter-spacing: -0.047em; text-wrap: balance; }
+.hero2-lead { margin: clamp(24px, 2.6vw, 36px) 0 0; max-width: 36em; font-size: clamp(18px, 1.45vw, 21px); line-height: 1.55; color: var(--text-2); }
+.hero2 .b-cta { margin-top: clamp(28px, 3vw, 40px); }
+.hero2-photo { min-height: clamp(400px, 38vw, 560px); }
+.hero2-proofs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.7fr) minmax(0, 1fr); gap: 16px; margin-top: clamp(28px, 3.4vw, 48px); }
+.hero2-proofs .tile-b { padding: 22px 24px; }
+.hero2-proofs .t-big { font-size: clamp(28px, 2.5vw, 40px); }
+.hero2-proofs .t-quote blockquote { font-size: clamp(18px, 1.5vw, 22px); }
+@media (max-width: 1080px) {
+  .hero2 { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+  .hero2-proofs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .hero2 { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .hero2-text { padding-block: 8px 0; }
+  .hero2-title { font-size: 40px; }
+  .hero2-lead { font-size: 16.5px; }
+  .hero2-photo { min-height: 320px; }
+  .hero2-proofs { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+}
+
+/* Tuiles (communes à l'accueil et aux anciennes variantes) */
 .b-hero { padding-top: clamp(16px, 2.4vw, 32px); padding-bottom: clamp(56px, 7vw, 96px); }
 .t-hero { justify-content: space-between; gap: 32px; padding: clamp(28px, 3.4vw, 48px); background: var(--lin-soft); }
 .b-title { margin: 0; font: 600 clamp(40px, 4.9vw, 76px)/0.98 var(--f-display); letter-spacing: -0.045em; text-wrap: balance; }

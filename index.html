@@ -18,10 +18,10 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/InterTight-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=23">
-<link rel="stylesheet" href="assets/css/bento.css?v=23">
-<script src="assets/js/data-demo.js?v=23" defer></script>
-<script src="assets/js/site.js?v=23" defer></script>
+<link rel="stylesheet" href="assets/css/site.css?v=24">
+<link rel="stylesheet" href="assets/css/bento.css?v=24">
+<script src="assets/js/data-demo.js?v=24" defer></script>
+<script src="assets/js/site.js?v=24" defer></script>
 </head>
 <body>
 <a class="skip" href="#contenu">Aller au contenu</a>
@@ -52,78 +52,54 @@
 
 <main id="contenu">
 
-<!-- Accueil en tuiles -->
+<!-- Accueil : la proposition de valeur d'abord, la photo ensuite, les preuves en dessous -->
 <section class="b-hero" id="accueil" aria-labelledby="titre-accueil">
   <div class="wrap">
-    <div class="bento">
-      <div class="tile-b c-8 r-2 t-hero">
-        <h1 class="b-title" id="titre-accueil">Tous vos reportings, enfin <span class="hl">automatisés.<svg class="hl-stroke" viewBox="0 0 600 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M8 28 C 130 12, 270 12, 390 19 S 548 31, 592 15"/></svg></span></h1>
-        <div>
-          <p class="b-lead">Je transforme vos données éparpillées en système de pilotage automatisé : production, chantiers, budgets, interventions. Le travail d'un data analyst spécialisé en énergies renouvelables, sans avoir à en recruter un.</p>
-          <p class="b-for">Pour les PME des énergies renouvelables, de la construction, de la maintenance et de l'industrie.</p>
-          <div class="b-cta">
-            <a class="btn btn--xl" href="#reserver" data-track="reserver-accueil">Réserver un audit gratuit
-              <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-            <span class="micro">30 minutes en visio, sur vos fichiers réels.</span>
-          </div>
+    <div class="hero2">
+      <div class="hero2-text">
+        <h1 class="hero2-title" id="titre-accueil">Tous vos reportings, enfin <span class="hl">automatisés.<svg class="hl-stroke" viewBox="0 0 600 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M8 28 C 130 12, 270 12, 390 19 S 548 31, 592 15"/></svg></span></h1>
+        <p class="hero2-lead">Je transforme vos données éparpillées en système de pilotage automatisé : production, chantiers, budgets, interventions. Le travail d'un data analyst spécialisé en énergies renouvelables, sans avoir à en recruter un.</p>
+        <p class="b-for">Pour les PME des énergies renouvelables, de la construction, de la maintenance et de l'industrie.</p>
+        <div class="b-cta">
+          <a class="btn btn--xl" href="#reserver" data-track="reserver-accueil">Réserver un audit gratuit
+            <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <span class="micro">30 minutes en visio, sur vos fichiers réels.</span>
         </div>
       </div>
 
-      <div class="tile-b c-4 t-ba" data-reveal>
+      <a class="tile-b t-photo hero2-photo" href="#a-propos">
+        <img src="assets/img/etienne-portrait.webp" alt="Etienne Collonge, fondateur de Pixcelor" width="880" height="1100">
+        <span class="t-cap"><strong>Etienne Collonge</strong><span>Ingénieur des Mines d'Alès, basé près d'Aix-en-Provence.</span></span>
+        <span class="t-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+
+    <div class="hero2-proofs">
+      <div class="tile-b t-ba" data-reveal>
         <p class="t-label"><span>Reporting de facturation des travaux, par mois</span></p>
         <p class="t-big">50&#8239;h <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 4&#8239;h</p>
         <div class="ba-rows" aria-hidden="true">
           <span>Avant</span><div class="ba-bar"><i class="full"></i></div>
           <span>Après</span><div class="ba-bar"><i class="short"></i></div>
         </div>
-        <p class="t-foot">Sur 2&#8239;000 centrales solaires, après restructuration des données.</p>
       </div>
 
-      <a class="tile-b c-4 m-hide" href="#exemples" data-goto="tab-enr">
-        <span class="t-label"><span>Production et budget, en MWh</span><b class="neg">−3,4&#8239;%</b></span>
-        <span class="chart" data-chart="hero-combo"></span>
-        <span class="t-foot">Énergies renouvelables</span>
-        <span class="t-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </a>
-
-      <a class="tile-b c-3 r-2 t-photo" href="#a-propos">
-        <img src="assets/img/etienne-portrait.webp" alt="Etienne Collonge, fondateur de Pixcelor" width="880" height="1100">
-        <span class="t-cap"><strong>Etienne Collonge</strong><span>Ingénieur des Mines d'Alès, basé près d'Aix-en-Provence.</span></span>
-        <span class="t-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </a>
-
-      <figure class="tile-b c-5 r-2 t-map m-hide">
-        <figcaption class="t-label"><span>Écart au budget par région · cliquez une région</span></figcaption>
-        <div class="chart" data-chart="b-map"></div>
-        <div class="legend"><span><i class="sw-good"></i>au-dessus de −2&#8239;%</span><span><i class="sw-mid"></i>−2 à −5&#8239;%</span><span><i class="sw-analyse"></i>sous −5&#8239;%</span></div>
-        <p class="t-foot">Parc de démonstration de 400 centrales, données fictives. Le rapport complet est plus bas.</p>
-      </figure>
-
-      <div class="tile-b c-4 t-num">
+      <div class="tile-b t-num">
         <p class="t-label"><span>Asset management photovoltaïque</span></p>
         <div class="t-body">
-          <p class="t-big">2&#8239;000 centrales</p>
-          <p class="t-foot">suivies par le service que j'ai monté de zéro, outils d'automatisation compris.</p>
+          <p class="t-big">2&#8239;000</p>
+          <p class="t-foot">centrales solaires suivies par le service que j'ai monté de zéro, outils d'automatisation compris.</p>
         </div>
       </div>
 
-      <a class="tile-b c-4 t-num t-offer" href="#rapport-pv">
-        <span class="t-label"><span>Offre clé en main</span></span>
-        <span class="t-body">
-          <span class="t-big t-big--sm">Rapport d'exploitation PV</span>
-          <span class="t-foot">Le modèle de données et le rapport Power BI, branchés sur vos portails, vos compteurs et vos contrats.</span>
-        </span>
-        <span class="t-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      </a>
-
-      <a class="tile-b c-8 t-quote" href="#temoignages">
+      <a class="tile-b t-quote" href="#temoignages">
         <span class="t-label"><span>Entretien filmé</span><b>2 jours <span aria-hidden="true">→</span> quelques minutes</b></span>
         <blockquote>« Ce que je produisais en plusieurs heures ou en plusieurs jours, je l'ai maintenant sous les yeux. »</blockquote>
         <span class="t-who"><strong>Céline</strong>, responsable relations presse et médias chez un acteur du photovoltaïque</span>
         <span class="t-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
 
-      <div class="tile-b c-4 t-num">
+      <div class="tile-b t-num">
         <p class="t-label"><span>Démarrage</span></p>
         <div class="t-body">
           <p class="t-big">1 semaine</p>

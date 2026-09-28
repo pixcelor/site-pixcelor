@@ -1303,10 +1303,6 @@
     t1: [110, 120, 118, 135, 150, 128, 115, 112, 120, 108, 100, 96], t2: [90, 95, 102, 110, 125, 98, 92, 88, 94, 90, 85, 80], t3: [70, 68, 75, 80, 88, 72, 70, 66, 69, 64, 60, 58]
   };
   var CHARTS = {
-    "hero-combo": function (el, a) {
-      combo(el, { h: 150, noAxis: true, labels: M1, bars: D.mois.prod, line: D.mois.bud, barMax: 22, label: "Production mensuelle et budget",
-        tip: function (i) { return [M12[i] + " 2025", "Production " + fr(D.mois.prod[i], 0) + " MWh", "Budget " + fr(D.mois.bud[i], 0) + " MWh"]; } }, a);
-    },
     "flow": function (el, a) { flowChart(el, a); },
     "enr-combo": function (el, a) {
       combo(el, { h: 240, labels: M12, bars: D.mois.prod, line: D.mois.bud, label: "Production mensuelle 2025 et budget",
@@ -1384,15 +1380,6 @@
       var t = theme(el);
       donut(el, { h: 200, dec: 0, unit: "commandes", label: "Commandes livrées à la date promise", center: ["91 %", "à l'heure"],
         items: [{ label: "À la date", value: 182, color: t.sage }, { label: "En retard", value: 18, color: t.terra }] }, a);
-    },
-    // Carte de l'accueil : un clic sur une région ouvre le rapport PV filtré sur elle.
-    "b-map": function (el, a) {
-      mapChart(el, { regions: D.regions, sel: null, color: regionColor, label: "Écart au budget par région, parc de démonstration",
-        onPick: function (nom) {
-          var pv = document.getElementById("rapport-pv");
-          if (pv) pv.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
-          pvSetRegion(nom);
-        } }, a);
     },
     "delay": function (el, a) { delayChart(el, a); },
     "gantt": function (el, a) { gantt(el, a); }
